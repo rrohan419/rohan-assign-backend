@@ -1,4 +1,4 @@
-package com.mbfinalassignment.Model;
+package com.mbfinalassignment.model;
 
 import java.util.Date;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.mbfinalassignment.ExceptionHandling.ErrorResponse;
+import com.mbfinalassignment.exceptionHandling.ErrorResponse;
 
 
 public class ResponseModel

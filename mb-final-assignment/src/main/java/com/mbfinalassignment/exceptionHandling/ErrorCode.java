@@ -1,4 +1,4 @@
-package com.mbfinalassignment.ExceptionHandling;
+package com.mbfinalassignment.exceptionHandling;
 
 public enum ErrorCode {
 

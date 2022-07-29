@@ -1,4 +1,4 @@
-package com.mbfinalassignment.Model;
+package com.mbfinalassignment.model;
 
 public class SuccessResponse {
 	private String message;

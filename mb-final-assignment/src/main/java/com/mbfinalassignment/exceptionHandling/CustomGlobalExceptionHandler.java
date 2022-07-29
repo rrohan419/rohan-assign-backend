@@ -1,4 +1,4 @@
-package com.mbfinalassignment.ExceptionHandling;
+package com.mbfinalassignment.exceptionHandling;
 
 import java.nio.file.AccessDeniedException;
 import java.util.Date;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.mbfinalassignment.Model.ResponseModel;
-import com.mbfinalassignment.Model.ValidationCustomResponseModel;
+import com.mbfinalassignment.model.ResponseModel;
+import com.mbfinalassignment.model.ValidationCustomResponseModel;
 
 @RestControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler

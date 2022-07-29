@@ -1,8 +1,9 @@
-package com.mbfinalassignment.ExceptionHandling;
+package com.mbfinalassignment.exceptionHandling;
 
 import java.util.Date;
 import java.util.List;
-import com.mbfinalassignment.Model.ValidationCustomResponseModel;
+
+import com.mbfinalassignment.model.ValidationCustomResponseModel;
 
 public class ErrorResponse
 {

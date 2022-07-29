@@ -1,11 +1,12 @@
-package com.mbfinalassignment.Repository;
+package com.mbfinalassignment.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mbfinalassignment.Entity.Product;
+import com.mbfinalassignment.entity.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+	boolean existsByProductid(String productId);
 }

@@ -1,4 +1,4 @@
-package com.mbfinalassignment.Model;
+package com.mbfinalassignment.model;
 
 public class ValidationCustomResponseModel {
 	private String fieldName;
