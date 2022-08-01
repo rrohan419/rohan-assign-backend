@@ -8,5 +8,7 @@ public interface ProductDao {
 	List<Product> allProducts();
 	boolean existsByProductId(String productId);
 	Product saveProduct(Product product);
+	Product getProductByid(Long id);
+	Product findByProductId(String id);
 	
 }

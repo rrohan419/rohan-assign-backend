@@ -47,4 +47,22 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
+	@Override
+	public Product getProductByid(Long id) {
+		try {
+			return productRepository.findById(id).get();
+		} catch (Exception e) {
+			throw new CustomException("error while retreving product by id", ErrorCode.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@Override
+	public Product findByProductId(String id) {
+		try {
+			return productRepository.findByProductid(id);
+		}catch (Exception e) {
+			throw new CustomException("error while retreving the product by productId", ErrorCode.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 }

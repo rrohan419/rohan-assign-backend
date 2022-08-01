@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mbfinalassignment.entity.Product;
 import com.mbfinalassignment.model.ProductModel;
 import com.mbfinalassignment.model.SuccessResponse;
 import com.mbfinalassignment.service.ProductService;
@@ -32,6 +34,19 @@ public class ProductController {
 		response.setMessage("Successfull");
 		response.setSuccessCode(HttpStatus.OK.value());
 		
+		return new ResponseEntity<SuccessResponse>(response,HttpStatus.OK);
+	}
+	
+	@GetMapping("/single/{id}")
+	public ResponseEntity<SuccessResponse> getProductByid(@RequestParam(name="id", required = true) String id)
+	{
+		SuccessResponse response = new SuccessResponse();
+//		Product product = productService.getProductById(id);
+		Product product = productService.findByProductId(id);
+		response.setData(product);
+		response.setMessage("successfull");
+		response.setSuccessCode(HttpStatus.OK.value());
+		System.out.println(product);
 		return new ResponseEntity<SuccessResponse>(response,HttpStatus.OK);
 	}
 	
