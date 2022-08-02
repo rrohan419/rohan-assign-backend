@@ -1,24 +1,28 @@
 package com.mbfinalassignment.model;
 
+import javax.validation.constraints.NotBlank;
 
 public class TransactionDetailModel {
-		
+	@NotBlank
 	private String customerId;
-	
+
 	private String customer_name;
-	
+	@NotBlank
 	private String email;
-	
+
 	private String payment_intent;
-	
+
 	private String payment_method_type;
 	
+	@NotBlank
 	private String currency;
 	
+	@NotBlank
 	private Long amount;
-	
+
+	@NotBlank
 	private Boolean payment_status;
-	
+
 	private Long createdAt;
 
 	public String getCustomerId() {
@@ -92,7 +96,5 @@ public class TransactionDetailModel {
 	public void setCreatedAt(Long createdAt) {
 		this.createdAt = createdAt;
 	}
-	
-	
-	
+
 }

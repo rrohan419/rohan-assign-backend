@@ -48,14 +48,11 @@ import com.stripe.model.PaymentIntent;
 import com.stripe.model.StripeObject;
 import com.stripe.model.checkout.Session;
 import com.stripe.net.ApiResource;
-import com.stripe.net.Webhook;
 import com.stripe.param.CustomerCreateParams;
 import com.stripe.param.PaymentIntentCreateParams;
 import com.stripe.param.checkout.SessionCreateParams;
 
-import spark.Request;
 import spark.Response;
-import spark.Route;
 
 @RestController
 @RequestMapping("/api/payment")
@@ -122,9 +119,6 @@ public class PaymentController {
 
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("id", session.getId());
-//		response.put("currency", session.getCurrency());
-//		response.put("body", session);
-//		System.out.println(session);
 		return gson.toJson(response);
 
 	}
@@ -153,26 +147,15 @@ public class PaymentController {
 
 	@PostMapping("/webhook")
 	public Object handle(HttpServletRequest request, Response response) throws IOException {
-		String webSecret ="whsec_c4e2da3277a5ca522b368f4099a91ee7d10dc329ef7d48c8e3a7fcdae64d35fc";
-		String sigHeader = request.getHeader("Stripe-Signature");
 		String payload = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
 		Event event = null;
-		try
-		{
+		try {
 			event = ApiResource.GSON.fromJson(payload, Event.class);
-		}catch(
-		JsonSyntaxException e)
-		{
+		} catch (JsonSyntaxException e) {
 			response.status(400);
 			return "";
 		}
-//		try {
-//			String payload = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-//			event = Webhook.constructEvent(payload, sigHeader, webSecret);
-//		} catch (Exception e) {
-//		}
-		// System.out.println("Event" + event);
 		if ("charge.succeeded".equals(event.getType())) {
 			System.out.println("In Checkout Session completed");
 			TransactionDetailModel details = new TransactionDetailModel();
@@ -196,81 +179,3 @@ public class PaymentController {
 		return "";
 	}
 }
-
-//	@PostMapping("/webhook")
-//	public Object handle(HttpServletRequest request, Response response)
-//	throws IOException,SignatureVerificationException{
-// 
-//	String endpointSecret = "whsec_c4e2da3277a5ca522b368f4099a91ee7d10dc329ef7d48c8e3a7fcdae64d35fc";
-//	String payload = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-//	String sigHeader = request.getHeader("Stripe-Signature");
-//	Event event = null;
-//
-//	try
-//	{
-//		event = ApiResource.GSON.fromJson(payload, Event.class);
-//	}catch(
-//	JsonSyntaxException e)
-//	{
-//		response.status(400);
-//		return "";
-//	}
-//
-//		if(endpointSecret != null && sigHeader != null) {
-//            // Only verify the event if you have an endpoint secret defined.
-//            // Otherwise use the basic event deserialized with GSON.
-//            try {
-//                event = Webhook.constructEvent(payload, sigHeader, "whsec_c4e2da3277a5ca522b368f4099a91ee7d10dc329ef7d48c8e3a7fcdae64d35fc");
-//            } catch (SignatureVerificationException e) {
-//                // Invalid signature
-//                System.out.println("⚠️  Webhook error while validating signature.");
-//                response.status(400);
-//                return "";
-//            }
-//        }
-
-//		System.out.println("event "+event);
-
-//	EventDataObjectDeserializer dataObjectDeserializer = event.getDataObjectDeserializer();
-//	StripeObject stripeObject = null;if(dataObjectDeserializer.getObject().isPresent())
-//	{
-//			stripeObject = dataObjectDeserializer.getObject().get();
-//		}else
-//	{
-//		throw new IllegalStateException(String.format("Unable to deserialize event data object for %s", event));
-//	}
-//	Charge charge = (Charge) stripeObject;System.out.println(charge);switch(event.getType())
-//	{
-//		case "payment_intent.succeeded":
-//			PaymentIntent paymentIntent = (PaymentIntent) stripeObject;
-//			break;
-//		case "payment_intent.created":
-//			PaymentIntent paymentIntent2 = (PaymentIntent) stripeObject;
-//			break;
-//		case "customer.created":
-//			System.out.println(charge);
-//			TransactionDetailModel model =null;
-//			model.setCustomerId(event.getId());
-			
-//			model.setCreatedAt(data);
-//			deailsService.saveTransaction(model);
-//			break;
-//		}
-//		response.status(200);
-//	return"";
-
-//}
-
-//	private Event extractEventFromSignature(HttpServletRequest request, String webhookSecret) {
-//		String sigHeader = request.getHeader("Stripe-Signature");
-//		Event event = null;
-//		try {
-//			String payload = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-//			event = Webhook.constructEvent(payload, sigHeader, webhookSecret);
-//		} catch (Exception e) {
-//			throw new CustomException(e.getMessage(), e, ErrorCode.INTERNAL_SERVER_ERROR);
-//		}
-//		return event;
-//	}
-
-//}

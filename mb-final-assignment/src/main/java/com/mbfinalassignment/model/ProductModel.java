@@ -2,23 +2,20 @@ package com.mbfinalassignment.model;
 
 import javax.validation.constraints.NotBlank;
 
-
-
 public class ProductModel {
 
 	@NotBlank
 	private String name;
-	
+
 	@NotBlank
-//	@ValidProductId
 	private String productid;
-	
+
 	@NotBlank
 	private String company_name;
-	
+
 	@NotBlank
 	private String price;
-	
+
 	public String getPrice() {
 		return price;
 	}
@@ -41,8 +38,5 @@ public class ProductModel {
 	public String getDescription() {
 		return description;
 	}
-	
-	
-	
-	
+
 }

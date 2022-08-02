@@ -9,5 +9,6 @@ import com.mbfinalassignment.entity.Product;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	boolean existsByProductid(String productId);
+
 	Product findByProductid(String productId);
 }

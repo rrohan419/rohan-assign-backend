@@ -17,42 +17,40 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductDao dao;
-	
+
 	@Autowired
 	private ModelMapper mapper;
-	
+
 	@Override
 	public List<Product> getAllProducts() {
 
 		List<Product> pro = dao.allProducts();
-		
-		if(pro.isEmpty())
-		{
-			throw new CustomException("No product Found",ErrorCode.NOT_FOUND);
+
+		if (pro.isEmpty()) {
+			throw new CustomException("No product Found", ErrorCode.NOT_FOUND);
 		}
 		return dao.allProducts();
 	}
 
 	@Override
 	public Product saveProduct(ProductModel model) {
-		
-		if(dao.existsByProductId(model.getProductid())){
-			
-			throw new CustomException(model.getProductid()+" already exists", ErrorCode.RESOURCE_ALREADY_EXISTS);
+
+		if (dao.existsByProductId(model.getProductid())) {
+
+			throw new CustomException(model.getProductid() + " already exists", ErrorCode.RESOURCE_ALREADY_EXISTS);
 		}
-		Product product = mapper.map(model,Product.class);
-		
+		Product product = mapper.map(model, Product.class);
+
 		return dao.saveProduct(product);
 	}
 
 	@Override
 	public Product getProductById(Long id) {
-		
+
 		Product product = dao.getProductByid(id);
-		
-		if(product == null)
-		{
-			throw new CustomException(id+" not present ",ErrorCode.NOT_FOUND);
+
+		if (product == null) {
+			throw new CustomException(id + " not present ", ErrorCode.NOT_FOUND);
 		}
 		return product;
 	}
@@ -60,12 +58,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product findByProductId(String id) {
 		Product product = dao.findByProductId(id);
-		if(product == null)
-		{
-			throw new CustomException(id+" not present ",ErrorCode.NOT_FOUND);
+		if (product == null) {
+			throw new CustomException(id + " not present ", ErrorCode.NOT_FOUND);
 		}
 		return product;
-		
+
 	}
 
 }

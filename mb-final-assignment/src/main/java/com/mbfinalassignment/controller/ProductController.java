@@ -22,42 +22,37 @@ import com.mbfinalassignment.service.ProductService;
 @RequestMapping("/api/products")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProductController {
-	
+
 	@Autowired
 	ProductService productService;
-	
+
 	@GetMapping
-	public ResponseEntity<SuccessResponse> getAllProducts()
-	{
-		SuccessResponse response =new SuccessResponse();
+	public ResponseEntity<SuccessResponse> getAllProducts() {
+		SuccessResponse response = new SuccessResponse();
 		response.setData(productService.getAllProducts());
 		response.setMessage("Successfull");
 		response.setSuccessCode(HttpStatus.OK.value());
-		
-		return new ResponseEntity<SuccessResponse>(response,HttpStatus.OK);
+
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/single/{id}")
-	public ResponseEntity<SuccessResponse> getProductByid(@RequestParam(name="id", required = true) String id)
-	{
+	public ResponseEntity<SuccessResponse> getProductByid(@RequestParam(name = "id", required = true) String id) {
 		SuccessResponse response = new SuccessResponse();
-//		Product product = productService.getProductById(id);
 		Product product = productService.findByProductId(id);
 		response.setData(product);
 		response.setMessage("successfull");
 		response.setSuccessCode(HttpStatus.OK.value());
-		System.out.println(product);
-		return new ResponseEntity<SuccessResponse>(response,HttpStatus.OK);
+		return new ResponseEntity<SuccessResponse>(response, HttpStatus.OK);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<SuccessResponse> saveProduct(@RequestBody @Valid ProductModel model)
-	{
+	public ResponseEntity<SuccessResponse> saveProduct(@RequestBody @Valid ProductModel model) {
 		SuccessResponse response = new SuccessResponse();
 		response.setData(productService.saveProduct(model));
 		response.setMessage("successfull");
 		response.setSuccessCode(HttpStatus.OK.value());
-		
-		return new ResponseEntity<SuccessResponse>(response,HttpStatus.OK);
+
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

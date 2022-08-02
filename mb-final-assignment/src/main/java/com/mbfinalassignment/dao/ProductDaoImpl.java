@@ -15,15 +15,13 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Autowired
 	private ProductRepository productRepository;
-	
-	
+
 	@Override
 	public List<Product> allProducts() {
 		try {
 			return productRepository.findAll();
-		}
-		catch (Exception e) {
-			throw new CustomException("error while featching data",ErrorCode.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			throw new CustomException("error while featching data", ErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -31,9 +29,8 @@ public class ProductDaoImpl implements ProductDao {
 	public boolean existsByProductId(String productId) {
 		try {
 			return productRepository.existsByProductid(productId);
-		}
-		catch (Exception e) {
-			throw new CustomException("Product id ("+productId+") not found",ErrorCode.NOT_FOUND);
+		} catch (Exception e) {
+			throw new CustomException("Product id (" + productId + ") not found", ErrorCode.NOT_FOUND);
 		}
 	}
 
@@ -41,9 +38,8 @@ public class ProductDaoImpl implements ProductDao {
 	public Product saveProduct(Product product) {
 		try {
 			return productRepository.save(product);
-		}
-		catch (Exception e) {
-			throw new CustomException("error while saving "+product.getName(), ErrorCode.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			throw new CustomException("error while saving " + product.getName(), ErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -60,8 +56,9 @@ public class ProductDaoImpl implements ProductDao {
 	public Product findByProductId(String id) {
 		try {
 			return productRepository.findByProductid(id);
-		}catch (Exception e) {
-			throw new CustomException("error while retreving the product by productId", ErrorCode.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) {
+			throw new CustomException("error while retreving the product by productId",
+					ErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}
 

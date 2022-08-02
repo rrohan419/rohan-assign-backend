@@ -11,10 +11,11 @@ import javax.validation.Payload;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD,ElementType.ANNOTATION_TYPE,ElementType.TYPE_USE})
+@Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.TYPE_USE })
 @Constraint(validatedBy = ProductIdValidator.class)
 public @interface ValidProductId {
 	String message() default "{ProductId.invalid}";
+
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
