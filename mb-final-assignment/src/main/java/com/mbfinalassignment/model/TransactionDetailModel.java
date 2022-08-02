@@ -17,9 +17,9 @@ public class TransactionDetailModel {
 	
 	private Long amount;
 	
-	private String payment_status;
+	private Boolean payment_status;
 	
-	private String createdAt;
+	private Long createdAt;
 
 	public String getCustomerId() {
 		return customerId;
@@ -77,19 +77,19 @@ public class TransactionDetailModel {
 		this.amount = amount;
 	}
 
-	public String getPayment_status() {
+	public Boolean getPayment_status() {
 		return payment_status;
 	}
 
-	public void setPayment_status(String payment_status) {
+	public void setPayment_status(Boolean payment_status) {
 		this.payment_status = payment_status;
 	}
 
-	public String getCreatedAt() {
+	public Long getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(String createdAt) {
+	public void setCreatedAt(Long createdAt) {
 		this.createdAt = createdAt;
 	}
 	

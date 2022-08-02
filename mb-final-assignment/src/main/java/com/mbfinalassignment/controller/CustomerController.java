@@ -36,7 +36,6 @@ public class CustomerController {
 
 		CustomerListParams params = CustomerListParams.builder().build();
 		CustomerCollection customers = Customer.list(params);
-		System.out.println(customers+" all alla allla all");
 
 	}
 	
@@ -45,7 +44,6 @@ public class CustomerController {
 	{
 		Stripe.apiKey = stripeKey;
 
-//		CustomerListParams params = CustomerListParams.builder().build();
 		Customer customer = Customer.retrieve(customerId);
 		System.out.println(customer + "abcbsc");
 		
